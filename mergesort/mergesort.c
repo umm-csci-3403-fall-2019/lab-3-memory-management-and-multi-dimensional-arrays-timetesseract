@@ -3,7 +3,7 @@
 
 void mergesortRange(int* values, int startIndex, int endIndex);
 bool needsSorting(int rangeSize);
-void mergeRange(int* values, int startIndex, int midpoint, int endIndex);
+void mergeRanges(int* values, int startIndex, int midpoint, int endIndex);
 
 
 
@@ -18,7 +18,7 @@ void mergesortRange(int* values, int startIndex, int endIndex) {
     int midpoint = (startIndex + endIndex) / 2;
     mergesortRange(values, startIndex, midpoint);
     mergesortRange(values, midpoint, endIndex);
-    mergeRange(values, startIndex, midpoint, endIndex);
+    mergeRanges(values, startIndex, midpoint, endIndex);
   }
 }
 
@@ -26,10 +26,10 @@ bool needsSorting(int rangeSize) {
   return rangeSize >= 2;
 }
 
-void mergeRange(int* values, int startIndex, int midpoint, int endIndex) {
+void mergeRanges(int* values, int startIndex, int midpoint, int endIndex) {
   /* Assume the two ranges are sorted: and then merge them together */
   int rangeSize = endIndex - startIndex;
-  
+
   int* destination = (int*)calloc(rangeSize, sizeof(int));
   int firstIndex = startIndex;
   int secondIndex = midpoint;
@@ -53,10 +53,11 @@ void mergeRange(int* values, int startIndex, int midpoint, int endIndex) {
   while(secondIndex < endIndex) {
     destination[copyIndex] = values[secondIndex];
     ++copyIndex;
+    ++secondIndex;
   }
   int i;
-  for(i = 0; i < rangeSize; ++i) {
-   values[i + startIndex] = destination[i]; 
+  for(i = 0; i < rangeSize; i++) {
+   values[i + startIndex] = destination[i];
   }
   free(destination);
 }
