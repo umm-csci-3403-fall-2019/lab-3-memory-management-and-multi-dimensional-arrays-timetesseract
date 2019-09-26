@@ -1,6 +1,12 @@
 #include "mergesort.h"
 #include <stdlib.h>
 
+void mergesortRange(int* values, int startIndex, int endIndex);
+bool needsSorting(int rangeSize);
+void mergeRange(int* values, int startIndex, int midpoint, int endIndex);
+
+
+
 void mergesort(int size, int* values) {
   mergesortRange(values, 0, size);
   return;
@@ -8,11 +14,11 @@ void mergesort(int size, int* values) {
 
 void mergesortRange(int* values, int startIndex, int endIndex) {
   int rangeSize = endIndex - startIndex;
-  if needsSorting(rangeSize)) {
+  if (needsSorting(rangeSize)) {
     int midpoint = (startIndex + endIndex) / 2;
     mergesortRange(values, startIndex, midpoint);
     mergesortRange(values, midpoint, endIndex);
-    mergeRanges(values, startIndex, midpoint, endIndex);
+    mergeRange(values, startIndex, midpoint, endIndex);
   }
 }
 
@@ -23,7 +29,8 @@ bool needsSorting(int rangeSize) {
 void mergeRange(int* values, int startIndex, int midpoint, int endIndex) {
   /* Assume the two ranges are sorted: and then merge them together */
   int rangeSize = endIndex - startIndex;
-  int* destination = calloc(rangeSize, sizeof(int));
+  
+  int* destination = (int*)calloc(rangeSize, sizeof(int));
   int firstIndex = startIndex;
   int secondIndex = midpoint;
   int copyIndex = 0;
