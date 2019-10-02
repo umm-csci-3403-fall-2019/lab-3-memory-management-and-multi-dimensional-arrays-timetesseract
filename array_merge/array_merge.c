@@ -8,18 +8,17 @@ int* getTempArray(int num_arrays, int* sizes, int** values);
 
 
 int* array_merge(int num_arrays, int* sizes, int** values) {
-  // This is obviously broken. It has the right type, though, eh?
   int* tempArr = getTempArray(num_arrays, sizes, values);
   int i;
   int uniques = 0;
-  int offset = 0; 
-  for(i = 1; i < tempArr[0]; i++) {
+  int offset = 0;
+  for(i = 1; i < tempArr[0] + 1; i++) {
     if(i == 1 || tempArr[i] != tempArr[i-1]) {
       uniques ++;
     }
   }
   int* finalArray = (int*)calloc(uniques + 1, sizeof(int));
-  for(i = 1; i < tempArr[0]; i++) {
+  for(i = 1; i < tempArr[0] + 1; i++) {
     if(i == 1 || tempArr[i] != tempArr[i-1]) {
       offset ++;
       finalArray[offset] = tempArr[i];
