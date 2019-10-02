@@ -6,7 +6,7 @@ int* array_merge(int num_arrays, int* sizes, int** values);
 int getMax(int num_arrays, int* sizes);
 int* getTempArray(int num_arrays, int* sizes, int** values);
 
-
+// merges the arrays into one
 int* array_merge(int num_arrays, int* sizes, int** values) {
   int* tempArr = getTempArray(num_arrays, sizes, values);
   int i;
@@ -29,6 +29,7 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
   return finalArray;
 }
 
+// figures out the number of values to convert a 2-d array to a 1-d array
 int getMax(int num_arrays, int* sizes) {
   int i;
   int maxSize = 0;
@@ -38,6 +39,7 @@ int getMax(int num_arrays, int* sizes) {
   return maxSize;
 }
 
+// puts the values from the 2-d array into the 1-d array
 int* getTempArray(int num_arrays, int* sizes, int** values) {
   int i;
   int j;
